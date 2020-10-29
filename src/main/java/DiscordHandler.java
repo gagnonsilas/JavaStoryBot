@@ -12,7 +12,7 @@ public class DiscordHandler extends ListenerAdapter {
 
     public static void main(String[] args) throws LoginException
     {
-        jda = new JDABuilder("NzcwMzIyNjYyNTc1ODMzMDg4.X5b44g.OV38xcgpX4WH-UkEY2i7AjP6txI")
+        jda = new JDABuilder("token")
                 .setActivity(Activity.playing("!playstorygame"))
                 .build();
 

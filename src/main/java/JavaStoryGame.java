@@ -18,7 +18,7 @@ public class JavaStoryGame {
         System.out.println(user);
         System.out.println(channel);
 
-        jda.addEventListener(discordInterface = new DiscordInterface(channel, user));
+        jda.addEventListener(discordInterface = new DiscordInterface(channel, user, commandHandler));
         commandHandler = new CommandHandler(discordInterface);
 
         runGame();
@@ -31,27 +31,6 @@ public class JavaStoryGame {
 
         commandHandler.printRoom();
 
-        while(true)
-        {
-
-            //  Get user choice
-            String input = discordInterface.getInput();
-
-
-
-            if(input.contains("quit"))
-            {
-                break;
-            }
-
-            if(!input.equals(""))
-            {
-                if(commandHandler.doAction(input))
-                {
-                    commandHandler.printRoom();
-                }
-            }
-        }
         discordInterface.print("Thanks for playing");
     }
 }

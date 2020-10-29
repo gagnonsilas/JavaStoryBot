@@ -6,12 +6,13 @@ public class DiscordInterface extends ListenerAdapter {
 
     MessageChannel channel;
     String user;
-    String response = "";
+    CommandHandler commandHandler;
 
-    public DiscordInterface(MessageChannel messageChannel, String iUser)
+    public DiscordInterface(MessageChannel messageChannel, String iUser, CommandHandler inputCommandHandler)
     {
         channel = messageChannel;
         user = iUser;
+        commandHandler = inputCommandHandler;
     }
 
     public void print(String message)
@@ -32,18 +33,17 @@ public class DiscordInterface extends ListenerAdapter {
         if(event.getAuthor().getName().equals(user) && event.getChannel() == channel)
         {
             System.out.println("correct");
-            response = event.getMessage().getContentRaw();
-            System.out.println(response);
+            String input = event.getMessage().getContentRaw();
+
+            if(input.contains("quit"))
+            {
+                print("Thanks for playing");
+            }
+
+            if(commandHandler.doAction(input))
+            {
+                commandHandler.printRoom();
+            }
         }
-    }
-
-    public String getInput()
-    {
-        System.out.println("getInput");
-        String localResponse = "";
-
-        response = "";
-
-        return(localResponse);
     }
 }
