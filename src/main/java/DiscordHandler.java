@@ -12,21 +12,19 @@ public class DiscordHandler extends ListenerAdapter {
 
     public static void main(String[] args) throws LoginException
     {
-        jda = new JDABuilder("token")
+        jda = JDABuilder.createDefault("Token")
                 .setActivity(Activity.playing("!playstorygame"))
                 .build();
 
         jda.addEventListener(new DiscordHandler());
 
-        System.out.println(jda.getTextChannels());
+        System.out.println(jda.getGuilds());
     }
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event)
     {
-        System.out.println("message");
-
-        if(event.getMessage().getContentRaw().equals("!playstorygame"))
+        if(event.getMessage().getContentRaw().contains("!playstorygame"))
         {
             new JavaStoryGame(event.getAuthor().getName(), event.getChannel(), jda);
         }

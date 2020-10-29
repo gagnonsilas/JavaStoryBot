@@ -31,8 +31,12 @@ public class CommandHandler {
     public Boolean doAction(String input)
     {
 
-
-        if(input.contains("go"))
+        if(input.contains("help"))
+        {
+            discordInterface.react("\uD83E\uDD26");
+            return(true);
+        }
+        else if(input.contains("go"))
         {
             return(go(input));
         }
@@ -50,6 +54,7 @@ public class CommandHandler {
             return(true);
         }
         else{
+            discordInterface.react("U+1F62B");
             discordInterface.print("Sorry I don't recognize that command\n\n");
             return(false);
         }
